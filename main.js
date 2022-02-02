@@ -114,11 +114,11 @@ function getPrice(item) {
     var index = priceArray.indexOf(max);
     switch (index) {
         case 0:
-            return { name: item.name, market: "MarketA", price: priceArray[0] }
+            return { name: item.name, market: "MarketA", price: priceA }
         case 1:
-            return { name: item.name, market: "MarketB", price: priceArray[1] }
+            return { name: item.name, market: "MarketB", price: priceB }
         case 2:
-            return { name: item.name, market: "MarketC", price: priceArray[2] }
+            return { name: item.name, market: "MarketC", price: priceC }
     }
 }
 
@@ -127,7 +127,27 @@ function main() {
     neededMachinaries.forEach((item) => {
         indexOfAll.push(getPrice(item))
     })
+    
+    var totalMarketAPrice = 0;
+    var totalMarketBPrice = 0;
+    var totalMarketCPrice = 0;
+
+    indexOfAll.forEach((i) => {
+        if(i.market == "MarketA"){
+            totalMarketAPrice = i.price + totalMarketAPrice
+        }
+        else if(i.market == "MarketB"){
+            totalMarketBPrice = i.price + totalMarketBPrice
+        }
+        else{
+            totalMarketCPrice = i.price + totalMarketCPrice
+        }
+    })
+
     console.log(indexOfAll)
+    console.log("totalMarketAPrice", totalMarketAPrice + " CURA")
+    console.log("totalMarketBPrice", totalMarketBPrice + " CURB")
+    console.log("totalMarketCPrice", totalMarketCPrice + " CURC")
 
 }
 main()
